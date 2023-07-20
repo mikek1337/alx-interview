@@ -34,4 +34,4 @@ if __name__ == "__main__":
         print_stat(status, file_size)
     except KeyboardInterrupt:
         print_stat(status, file_size)
-        raise
+        
