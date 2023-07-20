@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """display stat"""
 
 import sys
@@ -25,11 +25,11 @@ if __name__ == "__main__":
             data = line.split()
             try:
                 file_size += int(data[-1])
-            except:
+            except ValueError:
                 pass
             try:
                 status[data[-2]] += 1
-            except:
+            except KeyError:
                 pass
         print_stat(status, file_size)
     except KeyboardInterrupt:
