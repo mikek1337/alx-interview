@@ -5,15 +5,12 @@ import sys
 
 def printSolution(board):
     """ Print the solution """
-    print("[", end="")
+    queens = []
     for i in range(len(board)):
         for j in range(len(board)):
             if board[i][j] == 1:
-                print("[{}, {}]".format(i, j), end="")
-                if i != len(board) - 1:
-                    print(", ", end="")
-    print("]")
-    return
+                queens.append([i, j])
+    print(queens)
 
 
 def isSafe(board, row, col):
@@ -31,7 +28,7 @@ def isSafe(board, row, col):
 
 
 def solveNQUtil(board, col):
-    """ Solve the N queen problem """
+    """ Solve N Queen problem """
     if col == len(board):
         printSolution(board)
         return True
@@ -45,7 +42,7 @@ def solveNQUtil(board, col):
 
 
 def solveNQ(n):
-    """ Solve the N queen problem """
+    """ Solve N Queen problem """
     if n < 4:
         print("N must be at least 4")
         return False
@@ -54,12 +51,4 @@ def solveNQ(n):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-    try:
-        n = int(sys.argv[1])
-    except ValueError:
-        print("N must be a number")
-        sys.exit(1)
-    solveNQ(n)
+    solveNQ(int(sys.argv[1]))
