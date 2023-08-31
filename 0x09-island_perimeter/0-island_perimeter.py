@@ -1,17 +1,20 @@
 #!/usr/bin/python3
-"""island parameter"""
+"""grid parameter"""
 
 
 def island_perimeter(grid):
-    """calculate the parameter of island"""
-    parameter = 0
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if (grid[i][j] == 1):
-                parameter += 1
-                if (grid[i][j] != len(grid[i])):
-                    if (grid[i][j+1] == 1 and grid[i-1][j] == 1):
-                        parameter += 1
-    if (len(grid) == 1):
-        parameter = parameter*2
-    return 2*parameter
+    """calculate the parameter of grid"""
+    M, N = len(grid), len(grid[0])
+    count = 0
+    for i in range(0, M):
+        for j in range(0, N):
+            if grid[i][j] == 1:
+                if i == 0 or grid[i - 1][j] == 0:
+                    count = count + 1
+                if i == M - 1 or grid[i + 1][j] == 0:
+                    count = count + 1
+                if j == 0 or grid[i][j - 1] == 0:
+                    count = count + 1
+                if j == N - 1 or grid[i][j + 1] == 0:
+                    count = count + 1
+    return count
