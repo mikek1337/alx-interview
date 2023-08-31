@@ -3,6 +3,7 @@
 
 
 def island_perimeter(grid):
+    """calculate the parameter of island"""
     parameter = 0
     for i in range(len(grid)):
         print(grid[i])
