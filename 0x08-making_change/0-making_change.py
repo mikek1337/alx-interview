@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Given a pile of coins of different values, determine the fewest number of
 coins needed to meet a given amount total """
-import sys
 
 
 def makeChange(coins, total):
@@ -11,13 +10,17 @@ def makeChange(coins, total):
     """
     if total <= 0:
         return 0
-    coins.sort(reverse=True)
-    min_coins = sys.maxsize
-    for i in range(len(coins)):
-        if total % coins[i] == 0:
-            return int(total / coins[i])
+    rem = total
+    coins_count = 0
+    coin_idx = 0
+    sorted_coins = sorted(coins, reverse=True)
+    n = len(coins)
+    while rem > 0:
+        if coin_idx >= n:
+            return -1
+        if rem - sorted_coins[coin_idx] >= 0:
+            rem -= sorted_coins[coin_idx]
+            coins_count += 1
         else:
-            tmp = int(total / coins[i])
-            min_coins = min(min_coins, tmp + makeChange(coins[i + 1:],
-                                                        total % coins[i]))
-    return min_coins if min_coins != sys.maxsize else -1
+            coin_idx += 1
+    return coins_count
